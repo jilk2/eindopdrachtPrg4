@@ -19,6 +19,21 @@ export class Game extends Engine {
         const soldier = new Soldier()
         this.add(soldier);
     }
+
+        keepInScreen(soldier){
+        if(soldier.pos > 1280){
+            soldier.pos = new Vector (this.pos.x -= 1280, this.pos.y)
+        } else {
+            soldier.pos = new Vector (this.pos.x += 1280, this.pos.y)
+        }
+
+        if(soldier.pos > 1280){
+            soldier.pos -= 1280
+        } else {
+            solider.pos += 1280
+        }
+    }
+
 }
 
 new Game()
