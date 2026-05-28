@@ -1,10 +1,11 @@
-import { Actor, Engine, Vector, DisplayMode } from "excalibur"
+import { Actor, Engine, Keys, Vector, DisplayMode } from "excalibur"
 import { Resources } from '../resources.js'
 
 export class Soldier extends Actor {
     hitpoints
 
     constructor(){
+        super()
         console.log("I am spawned")
     }
 
