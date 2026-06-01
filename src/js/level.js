@@ -14,22 +14,18 @@ export class Level extends Scene{
         this.playerOne = new Soldier(200, 200, "1")
         this.add(this.playerOne);
 
+        // this.playerOne.events.on("exitviewport", (e) => this.keepInScreen(e));
         // this.ui = new UI()
         // this.add(this.ui)
     }
 
-    keepInScreen(soldier){
-        if(soldier.pos > 1280){
-            soldier.pos = new Vector (this.pos.x -= 1280, this.pos.y)
-        } else {
-            soldier.pos = new Vector (this.pos.x += 1280, this.pos.y)
-        }
-
-        if(soldier.pos > 1280){
-            soldier.pos -= 1280
-        } else {
-            solider.pos += 1280
-        }
-    }
+    // keepInScreen(e){
+    //     if(e.target.pos > 1280){
+    //         e.target.pos = new Vector (620, 200)
+    //         console.log("hello")
+    //     } else {
+    //         e.target.pos = new Vector (this.pos += 1280, this.pos.y)
+    //     }
+    // }
 
 }
