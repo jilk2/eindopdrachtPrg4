@@ -21,9 +21,10 @@ export class Zombie extends Actor {
         this.pos = new Vector(Math.random() * 1280, Math.random() * 720)
     }
 
-    attack(event, owner){
-        if(event.other.owner instanceof Soldier){
-        event.other.owner.kill()
-    }
+attack(event) {
+  const other = event.other.owner
+  if (other instanceof Soldier) {
+    other.damage()
+  }
 }
 }

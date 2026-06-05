@@ -7,6 +7,7 @@ export class Soldier extends Actor {
 
     constructor() {
         super({ height:50, width: 50,collisionType: CollisionType.Active})
+        this.hitpoints = 100;
         console.log("I am spawned")
     }
 
@@ -56,6 +57,13 @@ export class Soldier extends Actor {
 
         this.speed = 250
     }
+
+    damage() {
+        this.hitpoints -= 10
+        if (this.hitpoints <= 0) {
+        this.kill()
+  }
+}
 
     shoot(){
         this.scene.spawnBullet(this.pos.x, this.pos.y, this.rotation)
