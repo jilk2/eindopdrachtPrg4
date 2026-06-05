@@ -1,6 +1,7 @@
 import { Actor, Engine, Keys, Vector, DisplayMode } from "excalibur"
 import { Resources } from '../resources.js'
 
+
 export class Soldier extends Actor {
     hitpoints
 
@@ -17,19 +18,17 @@ export class Soldier extends Actor {
         const soldier = new Actor()
         this.graphics.use(Resources.Soldier.toSprite())
         this.pos = new Vector(600, 400)
-        this.events.on("exitviewport", (e) => this.keepInScreen(e));
     }
 
     //Movement Code for 
-    onPostUpdate(engine) {
+    onPreUpdate(engine) {
         let kb = engine.input.keyboard
         let xspeed = 0
         let yspeed = 0
         if (kb.isHeld(Keys.ShiftLeft)) {
             this.speed = 350
-        } else {
-            this.speed = 250
         }
+
         if (kb.isHeld(Keys.Left) || kb.isHeld(Keys.A)) {
             xspeed -= this.speed
         }
@@ -46,9 +45,19 @@ export class Soldier extends Actor {
             yspeed += this.speed
         }
 
+        if(kb.wasPressed(Keys.Space)) {
+        this.shoot()
+        }
+
         this.vel = new Vector(xspeed, yspeed)
         if (this.vel.x !== 0 || this.vel.y !== 0) {
             this.rotation = Math.atan2(this.vel.y, this.vel.x)
         }
+
+        this.speed = 250
+    }
+
+    shoot(){
+        this.scene.spawnBullet(this.pos.x, this.pos.y, this.rotation)
     }
 }
