@@ -1,4 +1,4 @@
-import { Actor, Engine, Keys, Vector, DisplayMode } from "excalibur"
+import { Actor, Engine, Keys, Vector, DisplayMode, CollisionType } from "excalibur"
 import { Resources } from '../resources.js'
 
 
@@ -6,7 +6,7 @@ export class Soldier extends Actor {
     hitpoints
 
     constructor() {
-        super()
+        super({ height:50, width: 50,collisionType: CollisionType.Active})
         console.log("I am spawned")
     }
 
