@@ -27,8 +27,14 @@ export class Zombie extends Actor {
     this.graphics.use(Resources.Zombie.toSprite());
     this.on("collisionstart", (event) => this.attack(event));
     this.pos = new Vector(Math.random() * 1280, Math.random() * 720);
+
   }
 
+    onPostUpdate(engine){
+    const direction = this.scene.playerOne.pos.sub(this.pos).normalize();
+    this.rotation = Math.atan2(direction.y, direction.x);
+    this.vel = direction.scale(150);
+    }
   damage() {
     this.hitpoints -= 4;
     if (this.hitpoints <= 0) {

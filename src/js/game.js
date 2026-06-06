@@ -1,7 +1,8 @@
 import '../css/style.css'
-import { Actor, Engine, Vector, DisplayMode } from "excalibur"
+import { Actor, Engine, Vector, DisplayMode, Timer } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
-import { Level } from './level.js'
+import { Level } from './scenes/level.js'
+import { Gameover } from './scenes/gameover.js'
 export class Game extends Engine {
 
     constructor() {
@@ -16,6 +17,7 @@ export class Game extends Engine {
 
     startGame() {
         this.add('level', new Level())
+        this.add('game-over', new Gameover())
         this.goToScene("level")
     }
 
