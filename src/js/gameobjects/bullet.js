@@ -35,7 +35,7 @@ export class Bullet extends Actor {
     const other = event.other.owner;
     if (other instanceof Zombie) {
       console.log("I hit a zombie");
-      other.damage();
+      other.takeDamage();
       this.kill();
     }
   }

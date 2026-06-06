@@ -18,10 +18,6 @@ export class Soldier extends Actor {
     console.log("I am spawned");
   }
 
-  /**
-   * setup for the soldier that the player controlls
-   **/
-
   onInitialize(engine) {
     const soldier = new Actor();
     this.graphics.use(Resources.Soldier.toSprite());
@@ -65,7 +61,7 @@ export class Soldier extends Actor {
     this.speed = 250;
   }
 
-  damage(engine) {
+  takeDamage(engine) {
     this.hitpoints -= 10;
   }
 

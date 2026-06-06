@@ -35,7 +35,8 @@ export class Zombie extends Actor {
     this.rotation = Math.atan2(direction.y, direction.x);
     this.vel = direction.scale(150);
     }
-  damage() {
+    
+  takeDamage() {
     this.hitpoints -= 4;
     if (this.hitpoints <= 0) {
       this.kill();
@@ -45,7 +46,7 @@ export class Zombie extends Actor {
   attack(event) {
     const other = event.other.owner;
     if (other instanceof Soldier) {
-      other.damage();
+      other.takeDamage();
     }
   }
 }
