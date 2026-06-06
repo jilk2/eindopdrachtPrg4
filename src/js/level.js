@@ -1,6 +1,6 @@
 import { Actor, Engine, Vector, Scene } from "excalibur"
 import { Resources } from './resources.js'
-import { background } from "./background.js"
+import { Background } from "./background.js"
 import { Soldier } from './gameobjects/soldier.js'
 import { Bullet } from './gameobjects/bullet.js'
 import { Zombie } from "./gameobjects/zombie.js"
@@ -9,6 +9,7 @@ export class Level extends Scene{
     
     onInitialize(engine) {
         console.log("this level is created only once.")
+        const background = new Background()
         this.add(background);
         console.log('Starting Game');
 
