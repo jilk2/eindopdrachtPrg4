@@ -1,4 +1,4 @@
-import { Actor, Engine, Vector, Scene, Timer } from "excalibur"
+import { Actor, Engine, Vector, Scene, Timer, randomInRange } from "excalibur"
 import { Resources } from '../resources.js'
 import { Background } from "../background.js"
 import { Soldier } from '../gameobjects/soldier.js'
@@ -35,12 +35,13 @@ export class Level extends Scene{
     }
     
 spawnZombies(){
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < randomInRange(1,5); index++) {
         this.zombie = new Zombie()
         this.add(this.zombie)
     }
 }
 
+    
 
     spawnBullet(x,y,rot){
     const b = new Bullet()

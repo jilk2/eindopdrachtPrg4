@@ -11,10 +11,12 @@ import { Soldier } from "./soldier.js";
 
 export class Zombie extends Actor {
   hitpoints;
+  speed
 
   constructor() {
     super({ height: 50, width: 50, collisionType: CollisionType.Active });
     this.hitpoints = randomIntInRange(1, 5);
+    this.speed = randomInRange(150, 350)
     console.log("I am spawned");
   }
 
@@ -33,7 +35,7 @@ export class Zombie extends Actor {
     onPostUpdate(engine){
     const direction = this.scene.playerOne.pos.sub(this.pos).normalize();
     this.rotation = Math.atan2(direction.y, direction.x);
-    this.vel = direction.scale(150);
+    this.vel = direction.scale(this.speed);
     }
     
   takeDamage() {
