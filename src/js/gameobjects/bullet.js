@@ -37,9 +37,9 @@ export class Bullet extends Actor {
       console.log("I hit a zombie");
       other.takeDamage();
       this.kill();
-      this.scene.score += 10
-      console.log(this.scene.score)
-      this.scene.ui.updatePlayerOne(this.scene.score);
+      this.scene.score += 10;
+      console.log(this.scene.score);
+      this.scene.ui.updateScore(this.scene.score);
     }
   }
 }
