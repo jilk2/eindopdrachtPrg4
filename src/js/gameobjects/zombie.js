@@ -16,7 +16,7 @@ export class Zombie extends Actor {
   constructor() {
     super({ height: 50, width: 50, collisionType: CollisionType.Active });
     this.hitpoints = randomIntInRange(1, 5);
-    this.speed = randomInRange(150, 350)
+    this.speed = randomInRange(150, 280)
     console.log("I am spawned");
   }
 
