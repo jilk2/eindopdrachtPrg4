@@ -7,9 +7,9 @@ export class UI extends ScreenElement {
     }
 
     onInitialize(engine){
-        this.labelOne = new Label({
-            text: "P1: 0",
-            pos: new Vector(100,100),
+        this.labelScore = new Label({
+            text: "Score: 0",
+            pos: new Vector(900,50),
             font: new Font({
                 family: 'Helvetica',
                 size: 40,
@@ -17,12 +17,31 @@ export class UI extends ScreenElement {
                 color: Color.White
             })
         })
-            this.addChild(this.labelOne)
+            this.addChild(this.labelScore)
+
+        this.labelHealth = new Label({
+            text: "health: 100",
+            pos: new Vector(100,50),
+            font: new Font({
+                family: 'Helvetica',
+                size: 40,
+                unit: FontUnit.Px,
+                color: Color.White
+            })
+        })
+            this.addChild(this.labelHealth)
     }
 
-    updatePlayerOne(score){
-        this.labelOne.text = `p1: ${score}`
+    updateScore(score){
+        this.labelScore.text = `Score: ${score}`
     }
+
+    updateHealth(hitpoints){
+        this.labelHealth.text = `health: ${hitpoints}`
+    }
+
+
+    
 
     
 }
