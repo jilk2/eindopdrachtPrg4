@@ -24,7 +24,7 @@ export class Level extends Scene {
     this.playerOne = new Soldier(200, 200, "1");
     this.add(this.playerOne);
 
-    this.spawnZombies();
+    this.spawnZombies()
 
     this.zombieTimer = new Timer({
       fcn: () => {
@@ -38,7 +38,19 @@ export class Level extends Scene {
   }
 
   onActivate(){
+    let zombies = this.entities.filter(actor => actor instanceof Zombie)
+    for (const zombie of zombies) {
+        zombie.kill()
+    }
     this.score = 0;
+
+    this.ui.updateScore(this.score)
+
+    this.playerOne.hitpoints = 100
+    
+    this.ui.updateHealth(this.playerOne.hitpoints)
+
+    this.add(this.playerOne)
   }
 
   spawnZombies() {
