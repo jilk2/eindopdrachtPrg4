@@ -4,20 +4,27 @@ import { Background } from "../background.js";
 import { Soldier } from "../gameobjects/soldier.js";
 import { Bullet } from "../gameobjects/bullet.js";
 import { Zombie } from "../gameobjects/zombie.js";
+import { UI } from "../gameobjects/ui.js";
 
 export class Level extends Scene {
+  score = 0;
+
   onInitialize(engine) {
     console.log("this level is created only once.");
     const background = new Background(Resources.Background);
 
     this.add(background);
     console.log("Starting Game");
+    
+    this.ui = new UI()
+    this.add(this.ui)
+
+
 
     this.playerOne = new Soldier(200, 200, "1");
     this.add(this.playerOne);
 
-    this.spawnZombies()
-
+    this.spawnZombies();
 
     this.zombieTimer = new Timer({
       fcn: () => {
@@ -28,6 +35,10 @@ export class Level extends Scene {
     });
     this.add(this.zombieTimer);
     this.zombieTimer.start();
+  }
+
+  onActivate(){
+    this.score = 0;
   }
 
   spawnZombies() {
