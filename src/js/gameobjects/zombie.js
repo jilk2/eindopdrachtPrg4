@@ -15,7 +15,7 @@ export class Zombie extends Actor {
 
   constructor() {
     super({ height: 50, width: 50, collisionType: CollisionType.Active });
-    this.hitpoints = randomIntInRange(1, 5);
+    this.hitpoints = 5;
     this.speed = randomInRange(150, 280)
     console.log("I am spawned");
   }
@@ -39,7 +39,7 @@ export class Zombie extends Actor {
     }
     
   takeDamage() {
-    this.hitpoints -= 4;
+    this.hitpoints -= 5;
     if (this.hitpoints <= 0) {
       this.kill();
     }
@@ -49,6 +49,7 @@ export class Zombie extends Actor {
     const other = event.other.owner;
     if (other instanceof Soldier) {
       other.takeDamage();
+      this.scene.ui.updateHealth(this.scene.playerOne.hitpoints);
     }
   }
 }
