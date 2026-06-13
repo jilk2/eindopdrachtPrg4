@@ -10,7 +10,7 @@ import {
 import { Resources } from "../resources.js";
 
 export class Soldier extends Actor {
-  hitpoints;
+  hitpoints
 
   constructor() {
     super({ height: 50, width: 50, collisionType: CollisionType.Active });
@@ -21,7 +21,7 @@ export class Soldier extends Actor {
   onInitialize(engine) {
     const soldier = new Actor();
     this.graphics.use(Resources.Soldier.toSprite());
-    this.pos = new Vector(600, 400);
+    this.pos = new Vector(engine.drawWidth/2, engine.drawHeight/2);
   }
 
   //Movement Code for
@@ -71,6 +71,8 @@ export class Soldier extends Actor {
       engine.goToScene("game-over");
     }
   }
+  
+
   shoot() {
     this.scene.spawnBullet(this.pos.x, this.pos.y, this.rotation);
   }

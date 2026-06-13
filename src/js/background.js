@@ -12,8 +12,7 @@ export class Background extends Actor {
     }
     onInitialize(engine){
         this.sprite = new Sprite({
-            image: this.background,
-            sourceView: { x: 0, y: 0, width: engine.drawWidth, height: engine.drawHeight }
+            image: this.background
         })
         this.anchor = Vector.Zero
         this.graphics.use(this.sprite)

@@ -2,9 +2,9 @@ import { Actor, Engine, Scene, Keys } from "excalibur";
 import { Resources } from "../resources.js";
 import { Background } from "../background.js";
 
-export class Gameover extends Scene {
+export class Tutorial extends Scene {
   onInitialize(engine) {
-    const background = new Background(Resources.Gameover);
+    const background = new Background(Resources.Tutorial);
     this.add(background);
     console.log("you died!");
   }

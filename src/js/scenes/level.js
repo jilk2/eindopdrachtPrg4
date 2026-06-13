@@ -15,16 +15,17 @@ export class Level extends Scene {
 
     this.add(background);
     console.log("Starting Game");
-    
-    this.ui = new UI()
-    this.add(this.ui)
 
-
+    this.ui = new UI();
+    this.add(this.ui);
 
     this.playerOne = new Soldier(200, 200, "1");
+    this.playerOne.events.on("exitviewport", (e) => this.keepInScreen(e));
     this.add(this.playerOne);
+    // this.camera.strategy.lockToActor(this.playerOne);
+    // this.camera.strategy.elasticToActor(this.playerOne, 0.2, 0.6);
 
-    this.spawnZombies()
+    this.spawnZombies();
 
     this.zombieTimer = new Timer({
       fcn: () => {
@@ -37,20 +38,21 @@ export class Level extends Scene {
     this.zombieTimer.start();
   }
 
-  onActivate(){
-    let zombies = this.entities.filter(actor => actor instanceof Zombie)
+  onActivate() {
+    let zombies = this.entities.filter((actor) => actor instanceof Zombie);
     for (const zombie of zombies) {
-        zombie.kill()
+      zombie.kill();
     }
     this.score = 0;
 
-    this.ui.updateScore(this.score)
+    this.ui.updateScore(this.score);
 
-    this.playerOne.hitpoints = 100
-    
-    this.ui.updateHealth(this.playerOne.hitpoints)
+    this.playerOne.hitpoints = 100;
+    this.playerOne.events.on("exitviewport", (e) => this.keepInScreen(e));
 
-    this.add(this.playerOne)
+    this.ui.updateHealth(this.playerOne.hitpoints);
+
+    this.add(this.playerOne);
   }
 
   spawnZombies() {
@@ -65,4 +67,22 @@ export class Level extends Scene {
     bullet.addBullet(x, y, rot);
     this.add(bullet);
   }
+
+keepInScreen(e) {
+  const actor = e.target.owner || e.target;
+  const w = this.engine?.drawWidth ?? 1280;
+  const h = this.engine?.drawHeight ?? 720;
+
+  if (actor.pos.x < 0) {
+    actor.pos.x = w;
+  } else if (actor.pos.x > w) {
+    actor.pos.x = 0;
+  }
+
+  if (actor.pos.y < 0) {
+    actor.pos.y = h;
+  } else if (actor.pos.y > h) {
+    actor.pos.y = 0;
+  }
+}
 }
