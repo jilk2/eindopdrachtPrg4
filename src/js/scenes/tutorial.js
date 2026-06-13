@@ -1,4 +1,4 @@
-import { Actor, Engine, Scene, Keys } from "excalibur";
+import { Actor, Engine, Scene, Keys, Timer } from "excalibur";
 import { Resources } from "../resources.js";
 import { Background } from "../background.js";
 
@@ -6,14 +6,18 @@ export class Tutorial extends Scene {
   onInitialize(engine) {
     const background = new Background(Resources.Tutorial);
     this.add(background);
-    console.log("you died!");
+
+    this.startTimer = new Timer({
+      fcn: () => {
+        engine.goToScene("level");
+      },
+      repeats: false,
+      interval: 5000,
+    });
+    this.add(this.startTimer);
   }
 
-  onPreUpdate(engine) {
-    let kb = engine.input.keyboard;
-
-    if (kb.wasPressed(Keys.Enter)) {
-      engine.goToScene("level");
-    }
+  onActivate() {
+    this.startTimer.start();
   }
 }
