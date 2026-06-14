@@ -22,8 +22,6 @@ export class Level extends Scene {
     this.playerOne = new Soldier();
     this.playerOne.events.on("exitviewport", (e) => this.keepInScreen(e));
     this.add(this.playerOne);
-    // this.camera.strategy.lockToActor(this.playerOne);
-    // this.camera.strategy.elasticToActor(this.playerOne, 0.2, 0.6);
 
     this.spawnZombies();
 
@@ -68,21 +66,21 @@ export class Level extends Scene {
     this.add(bullet);
   }
 
-keepInScreen(e) {
-  const actor = e.target.owner || e.target;
-  const w = this.engine?.drawWidth ?? 1280;
-  const h = this.engine?.drawHeight ?? 720;
+  keepInScreen(e) {
+    const actor = e.target.owner || e.target;
+    const w = this.engine?.drawWidth ?? 1280;
+    const h = this.engine?.drawHeight ?? 720;
 
-  if (actor.pos.x < 0) {
-    actor.pos.x = w;
-  } else if (actor.pos.x > w) {
-    actor.pos.x = 0;
-  }
+    if (actor.pos.x < 0) {
+      actor.pos.x = w;
+    } else if (actor.pos.x > w) {
+      actor.pos.x = 0;
+    }
 
-  if (actor.pos.y < 0) {
-    actor.pos.y = h;
-  } else if (actor.pos.y > h) {
-    actor.pos.y = 0;
+    if (actor.pos.y < 0) {
+      actor.pos.y = h;
+    } else if (actor.pos.y > h) {
+      actor.pos.y = 0;
+    }
   }
-}
 }

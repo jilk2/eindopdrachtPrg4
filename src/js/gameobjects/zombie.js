@@ -20,10 +20,6 @@ export class Zombie extends Actor {
     console.log("I am spawned");
   }
 
-  /**
-   * setup for the soldier that the player controlls
-   **/
-
   onInitialize(engine) {
     const zombie = new Actor();
     this.graphics.use(Resources.Zombie.toSprite());
