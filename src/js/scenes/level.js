@@ -19,7 +19,7 @@ export class Level extends Scene {
     this.ui = new UI();
     this.add(this.ui);
 
-    this.playerOne = new Soldier(200, 200, "1");
+    this.playerOne = new Soldier();
     this.playerOne.events.on("exitviewport", (e) => this.keepInScreen(e));
     this.add(this.playerOne);
     // this.camera.strategy.lockToActor(this.playerOne);
